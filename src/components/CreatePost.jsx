@@ -30,7 +30,7 @@ export default function CreatePost() {
       <label htmlFor="title">Title:</label>
       <input type="text" id="title" value={title} onChange={handleTitleChange} />
 
-      <label htmlFor="content">Content:</label>
+      <label htmlFor="content">FEN:</label>
       <textarea id="content" value={content} onChange={handleContentChange} />
 
       <button type="submit" >

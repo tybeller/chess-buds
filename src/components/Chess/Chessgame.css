@@ -1,0 +1,15 @@
+.chess {
+    display: "flex";
+    justify-content: "center";
+    margin-bottom: "1rem";
+    width: 20rem;
+    height: 20rem;
+}
+
+.h {
+    width: 100%;
+    height: 100%;
+    display: "flex";
+    justify-content: "center";
+    align-items: "center";
+}
