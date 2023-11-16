@@ -4,6 +4,7 @@ import { Chess } from 'chess.js';
 
 export default function Chessgame() {
   const [chess] = useState(new Chess());
+  const [history, setHistory] = useState([]);
 
   const handleSnapback = () => {
     setFen(chess.fen());
@@ -24,7 +25,17 @@ export default function Chessgame() {
     console.log(chess.history())
 
     setFen(chess.fen());
+    setHistory(chess.history({ verbose: true }));
   };
+
+  const handleUndo = () => {
+    if (history.length > 0) {
+      chess.undo();
+      setFen(chess.fen());
+      setHistory(chess.history({ verbose: true }));
+    }
+  };
+
   const [fen, setFen] = useState('start');
 
   useEffect(() => {
@@ -32,16 +43,19 @@ export default function Chessgame() {
   }, [chess]);
 
   return (
-    <Chessboard
-      id="humanVsHuman"
-      width={800}
-      position={fen}
-      onDrop={({ sourceSquare, targetSquare }) => 
-        handleMove({
-          sourceSquare: sourceSquare,
-          targetSquare: targetSquare
-        })
-      }
-    />
+    <>
+      <Chessboard
+        id="humanVsHuman"
+        width={800}
+        position={fen}
+        onDrop={({ sourceSquare, targetSquare }) => 
+          handleMove({
+            sourceSquare: sourceSquare,
+            targetSquare: targetSquare
+          })
+        }
+      />
+      <button onClick={handleUndo}>Take back T_T</button>
+    </>
   );
 }
