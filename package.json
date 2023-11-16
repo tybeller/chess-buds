@@ -18,7 +18,8 @@
     "react-chessboard": "^4.3.2",
     "react-chessground": "^1.5.0",
     "react-dom": "^18.2.0",
-    "react-fen-chess-board": "^2.0.6"
+    "react-fen-chess-board": "^2.0.6",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

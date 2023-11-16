@@ -6,12 +6,14 @@ import CreatePost from './components/CreatePost'
 import Dashboard from './pages/dashboard/Dashboard'
 import Chessgame from './components/Chess/Chessgame'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Header from './components/Header/Header'
 
 function App() {
   
 
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Chessgame />} />
         <Route path="/dashboard" element={<Dashboard />} />

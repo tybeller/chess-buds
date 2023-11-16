@@ -1,0 +1,57 @@
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    width: 200px; /* set the width of the sidebar */
+    height: 100%; /* set the height of the sidebar */
+    position: fixed; /* make the sidebar fixed */
+    top: 0; /* position the sidebar at the top */
+    left: 0; /* position the sidebar at the left */
+    display: flex;
+    flex-direction: column; /* set the flex direction to column */
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out; /* add a transition for the transform property */
+}
+
+header.minimized {
+    transform: translateX(-200px); /* slide the header to the left off the screen */
+}
+
+header.minimized button {
+    transform: translateX(200px); /* rotate the button 180 degrees */
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    display: block;
+    padding: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #555;
+}
+
+header button {
+    transition: transform 0.3s ease-in-out;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
