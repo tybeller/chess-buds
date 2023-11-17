@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../api';
-
+import Chessboard from 'chessboardjsx';
+import './Dashboard.css';
 
 function Dashboard() {
   const [posts, setPosts] = useState([]);
@@ -41,7 +42,7 @@ function Dashboard() {
   }
 
   return (
-    <div>
+    <div className="whole-page">
       <h1>Dashboard</h1>
       <input
         type="text"
@@ -59,14 +60,19 @@ function Dashboard() {
           <tr>
             <th>Title</th>
             <th>Upvotes</th>
+            <th>Game</th>
             <th>Top Comment</th>
           </tr>
         </thead>
         <tbody>
           {filteredPosts.map((post) => (
             <tr key={post.id}>
-              <td>{post.title}</td>
-              <td>{post.upvotes}</td>
+              <td className="title">{post.title}</td>
+              <td className="upvotes">{post.upvotes}</td>
+              <td>
+                <Chessboard position={post.fen}/>
+
+              </td>
               <td>{fetchTopComment(post.id).text}</td>
             </tr>
           ))}

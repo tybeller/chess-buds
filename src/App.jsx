@@ -8,6 +8,7 @@ import Chessgame from './components/Chess/Chessgame'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
+import PostPage from './pages/PostPage/PostPage'
 
 function App() {
   
@@ -20,6 +21,8 @@ function App() {
         <Route path="/play" element={<Chessgame />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/postpage" element={<PostPage />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>
   )

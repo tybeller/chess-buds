@@ -26,3 +26,5 @@ function PGNViewer(props) {
     <div id={id}></div>
   )
 }
+
+export default PGNViewer;
