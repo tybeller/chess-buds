@@ -5,6 +5,7 @@ import useSound from 'use-sound';
 import moveSound from '/src/assets/move-self.mp3';
 import captureSound from '/src/assets/capture.mp3';
 import checkSound from '/src/assets/move-check.mp3';
+import invalidSound from '/src/assets/wrong.wav';
 
 export default function Chessgame() {
   const [chess] = useState(new Chess());
@@ -17,6 +18,7 @@ export default function Chessgame() {
   const [playMoveSound] = useSound(moveSound);
   const [playCaptureSound] = useSound(captureSound);
   const [playCheckSound] = useSound(checkSound);
+  const [playInvalidSound] = useSound(invalidSound);
 
   useEffect(() => {
     setFen(chess.fen());
@@ -36,6 +38,7 @@ export default function Chessgame() {
         promotion: 'q' // always promote to a queen for simplicity
       });
     } catch(e) {
+      playInvalidSound();
       console.log(e);
       return;
     }

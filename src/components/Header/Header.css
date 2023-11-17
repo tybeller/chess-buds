@@ -23,35 +23,37 @@ header.minimized {
 }
 
 header.minimized button {
-    transform: translateX(200px); /* rotate the button 180 degrees */
+    transform: translateX(100px); /* rotate the button 180 degrees */
 }
 
-ul {
+header ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+header li {
     margin: 0;
     padding: 0;
+    color:#fff;
 }
 
-a {
+header a {
     display: block;
     padding: 0.5rem;
     color: #fff;
     text-decoration: none;
 }
 
-a:hover {
+header a:hover {
     background-color: #555;
+    color: #fff;
 }
 
 header button {
     transition: transform 0.3s ease-in-out;
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
     right: 10px;
 }
 

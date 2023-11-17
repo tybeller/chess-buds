@@ -17,18 +17,18 @@ function Header() {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/play">Play</Link>
                     </li>
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <Link to="/dashboard">Dashboard</Link>
                     </li>
                     <li>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/create-post">Create Post</Link>
                     </li>
                 </ul>
             </nav>
             <button onClick={toggleMinimize}>
-                {isMinimized ? "Maximize" : "Minimize"}
+                {isMinimized ? ">" : "<"}
             </button>
         </header>
     );

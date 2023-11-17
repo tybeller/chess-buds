@@ -7,6 +7,7 @@ import Dashboard from './pages/dashboard/Dashboard'
 import Chessgame from './components/Chess/Chessgame'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
+import Home from './pages/Home/Home'
 
 function App() {
   
@@ -15,7 +16,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Chessgame />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/play" element={<Chessgame />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-post" element={<CreatePost />} />
       </Routes>
