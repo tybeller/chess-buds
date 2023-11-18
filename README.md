@@ -4,7 +4,7 @@ Submitted by: **Ty Beller**
 
 This web app: **Play Chess and share games**
 
-Time spent: **5** hours spent in total
+Time spent: **10** hours spent in total
 
 ## Required Features
 
