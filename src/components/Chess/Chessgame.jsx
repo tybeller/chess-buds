@@ -36,6 +36,10 @@ export default function Chessgame() {
     setFen(chess.fen());
   };
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   const handleMove = ({ sourceSquare, targetSquare }) => {
     let move = null;
     try {
@@ -55,9 +59,6 @@ export default function Chessgame() {
     setFen(chess.fen());
     setHistory(chess.history({ verbose: true }));
     setGameOver(chess.isGameOver());
-    if (gameOver) {
-      
-    }
 
     if (chess.isCheck() || chess.isCheckmate()) {
       playCheckSound();
@@ -68,11 +69,13 @@ export default function Chessgame() {
     else {
       playMoveSound();
     }
+    sleep(200).then(()=>setOrientation(orientation === 'white' ? 'black' : 'white'))
   };
 
   const handleUndo = () => {
     if (history.length > 0) {
       chess.undo();
+      setOrientation(orientation === 'white' ? 'black' : 'white');
       setFen(chess.fen());
       setHistory(chess.history({ verbose: true }));
       setGameOver(chess.isGameOver());
@@ -177,7 +180,6 @@ export default function Chessgame() {
         </div>
       )}
       <button onClick={handleUndo}>Take back T_T</button>
-      <button onClick={handleFlip}>Flip board orientation</button>
       <button onClick={() => setGameOver(true)}>Resign</button>
     </div>
   );

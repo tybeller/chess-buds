@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../../api';
 import Chessboard from 'chessboardjsx';
 import { Link } from 'react-router-dom';
+import DashboardEntry from '../../components/DashboardEntry/DashboardEntry';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -16,17 +17,6 @@ function Dashboard() {
     }
     fetchPosts();
   }, []);
-
-  async function fetchTopComment(postId) {
-    const commentsData = await api.getCommentsForPost(postId);
-    if (commentsData.length === 0) {
-      return { text: 'No comments' };
-    }
-    const topComment = commentsData.reduce((prev, curr) => {
-      return curr.upvotes > prev.upvotes ? curr : prev;
-    });
-    return topComment;
-  }
 
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -56,7 +46,7 @@ function Dashboard() {
 
   return (
     <div className="whole-page">
-      <h1>Dashboard</h1>
+      <h1>Past Games</h1>
       <input
         type="text"
         placeholder="Search by title"
@@ -70,21 +60,7 @@ function Dashboard() {
       </div>
       <div className="post-container">
         {filteredPosts.map((post) => (
-          <div key={post.id} className="post-card">
-            <h2 className="post-title">
-              <Link to={`/posts/${post.id}`}>{post.title}</Link>
-            </h2>
-            <div className="chessboard-container">
-              <Chessboard position={post.fen} />
-            </div>
-            <div className="post-details">
-              <div className="upvotes">
-                <span className="upvotes-count">{post.upvotes}</span>
-                <button onClick={() => handleUpvote(post.id)} className="upvote-button">Upvote</button>
-              </div>
-              <div className="top-comment">{fetchTopComment(post.id).text}</div>
-            </div>
-          </div>
+          <DashboardEntry key={post.id} post={post} handleUpvote={handleUpvote} />
         ))}
       </div>
     </div>

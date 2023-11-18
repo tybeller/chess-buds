@@ -20,10 +20,7 @@ function Header() {
                         <Link to="/play">Play</Link>
                     </li>
                     <li>
-                        <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/create-post">Create Post</Link>
+                        <Link to="/dashboard">Past Games</Link>
                     </li>
                 </ul>
             </nav>

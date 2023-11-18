@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import CreatePost from './components/CreatePost'
 import Dashboard from './pages/dashboard/Dashboard'
 import Chessgame from './components/Chess/Chessgame'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -18,7 +17,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/play" element={<Chessgame />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-post" element={<CreatePost />} />
         <Route path="/posts/:id" element={<Post />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>

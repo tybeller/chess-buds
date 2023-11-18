@@ -1,15 +1,14 @@
 .whole-page {
     display: flex;
     position: relative;
-    width: 100rem;
     top: 10px;
     bottom: 0;
-    left: 0;
-    right: 0;
+
 
     align-items: center;
     flex-direction: column;
 }
+
 
 table {
     border-collapse: collapse;

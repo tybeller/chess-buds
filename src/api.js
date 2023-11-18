@@ -29,7 +29,17 @@ export const api = {
 
     // Update a post by ID
     updatePost: async (id, data) => {
-        const { data: post, error } = await supabase.from('posts').update(data).eq('id', id).single();
+        const { data: post, error } = await supabase
+            .from('posts')
+            .update({
+                title: data.title,
+                white_name: data.white_name,
+                black_name: data.black_name,
+                white_elo: data.white_elo,
+                black_elo: data.black_elo,
+            })
+            .eq('id', id)
+            .single();
         if (error) throw error;
         return post;
     },
