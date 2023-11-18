@@ -6,6 +6,7 @@ import moveSound from '/src/assets/move-self.mp3';
 import captureSound from '/src/assets/capture.mp3';
 import checkSound from '/src/assets/move-check.mp3';
 import invalidSound from '/src/assets/wrong.wav';
+import { api } from '../../api';
 
 export default function Chessgame() {
   const [chess] = useState(new Chess());
@@ -14,6 +15,12 @@ export default function Chessgame() {
   const [orientation, setOrientation] = useState('white');
   const [gameOver, setGameOver] = useState(false);
 
+  const [exportData, setExportData] = useState(false);
+  const [whitePlayerName, setWhitePlayerName] = useState('');
+  const [whitePlayerElo, setWhitePlayerElo] = useState('');
+  const [blackPlayerName, setBlackPlayerName] = useState('');
+  const [blackPlayerElo, setBlackPlayerElo] = useState('');
+  const [title, setTitle] = useState(null);
 
   const [playMoveSound] = useSound(moveSound);
   const [playCaptureSound] = useSound(captureSound);
@@ -48,6 +55,9 @@ export default function Chessgame() {
     setFen(chess.fen());
     setHistory(chess.history({ verbose: true }));
     setGameOver(chess.isGameOver());
+    if (gameOver) {
+      
+    }
 
     if (chess.isCheck() || chess.isCheckmate()) {
       playCheckSound();
@@ -74,12 +84,24 @@ export default function Chessgame() {
   };
 
   const handleExport = () => {
-    if (gameOver) {
-      const exportedPGN = chess.pgn();
-      const exportedFEN = chess.fen();
-      console.log(exportedPGN, exportedFEN);
-      // do something with the exported PGN and FEN
-    }
+    setExportData(true);
+  };
+
+  const handleSubmit = () => {
+    // Make a POST request to the API endpoint with the player information
+    api.createPost({
+      title: title,
+      white_name: whitePlayerName,
+      white_elo: whitePlayerElo,
+      black_name: blackPlayerName,
+      black_elo: blackPlayerElo,
+      pgn: chess.pgn(),
+      fen: chess.fen()
+    });
+
+    // close the forum
+    setExportData(false);
+    
   };
 
   return (
@@ -100,8 +122,59 @@ export default function Chessgame() {
       {gameOver && (
         <>
           <div>Game Over</div>
-          <button onClick={handleExport}>Export PGN and FEN</button>
+          <button onClick={handleExport}>Post Game</button>
         </>
+      )}
+      {exportData && (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Title:
+              <input
+                type="text"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
+              />
+            </label>
+            <label>
+              White Player Name:
+              <input
+                type="text"
+                value={whitePlayerName}
+                onChange={e => setWhitePlayerName(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              White Player Elo:
+              <input
+                type="text"
+                value={whitePlayerElo}
+                onChange={e => setWhitePlayerElo(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Black Player Name:
+              <input
+                type="text"
+                value={blackPlayerName}
+                onChange={e => setBlackPlayerName(e.target.value)}
+              />
+            </label>
+            <br />
+            <label>
+              Black Player Elo:
+              <input
+                type="text"
+                value={blackPlayerElo}
+                onChange={e => setBlackPlayerElo(e.target.value)}
+              />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
       )}
       <button onClick={handleUndo}>Take back T_T</button>
       <button onClick={handleFlip}>Flip board orientation</button>

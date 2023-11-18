@@ -50,8 +50,34 @@ export const api = {
 
     // Fetch all comments for a post by post ID
     getCommentsForPost: async (postId) => {
-        const { data: comments, error } = await supabase.from('comments').select('*').eq('post_id', postId);
+        const { data: comments, error } = await supabase.from('comments').select('*').eq('postId', postId);
         if (error) throw error;
         return comments;
+    },
+
+    getPostById: async (id) => {
+        const { data: post, error } = await supabase.from('posts').select('*').eq('id', id).single();
+        if (error) throw error;
+        return post;
+    },
+
+    upvotePost: async (id, newCount) => {
+        const { data: post, error } = await supabase
+            .from('posts')
+            .update({ upvotes: newCount })
+            .eq('id', id)
+            .single();
+        if (error) throw error;
+        return post;
+    },
+
+    upvoteComment: async (id, newCount) => {
+        const { data: comment, error } = await supabase
+            .from('comments')
+            .update({ upvotes: newCount })
+            .eq('id', id)
+            .single();
+        if (error) throw error;
+        return comment;
     },
 };

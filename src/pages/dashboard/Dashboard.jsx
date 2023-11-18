@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../../api';
 import Chessboard from 'chessboardjsx';
+import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -34,11 +35,23 @@ function Dashboard() {
   // add function to handle sorting
   function handleSort(option) {
     setSortOption(option);
+    let sortedPosts = [];
     if (option === 'upvotes') {
-      setPosts([...posts].sort((a, b) => b.upvotes - a.upvotes));
+      sortedPosts = [...posts].sort((a, b) => b.upvotes - a.upvotes);
     } else if (option === 'time') {
-      setPosts([...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
+      sortedPosts = [...posts].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
+    setPosts(sortedPosts);
+  }
+
+  function handleUpvote(postId) {
+    const updatedPosts = [...posts];
+    const postToUpdate = updatedPosts.find((post) => post.id === postId);
+    const newVoteCount = postToUpdate.upvotes + 1;
+    postToUpdate.upvotes = newVoteCount;
+    setPosts(updatedPosts);
+
+    api.upvotePost(postId, newVoteCount);
   }
 
   return (
@@ -55,29 +68,25 @@ function Dashboard() {
         <button onClick={() => handleSort('upvotes')} disabled={sortOption === 'upvotes'}>Upvotes</button>
         <button onClick={() => handleSort('time')} disabled={sortOption === 'time'}>Time Created</button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Upvotes</th>
-            <th>Game</th>
-            <th>Top Comment</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPosts.map((post) => (
-            <tr key={post.id}>
-              <td className="title">{post.title}</td>
-              <td className="upvotes">{post.upvotes}</td>
-              <td>
-                <Chessboard position={post.fen}/>
-
-              </td>
-              <td>{fetchTopComment(post.id).text}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="post-container">
+        {filteredPosts.map((post) => (
+          <div key={post.id} className="post-card">
+            <h2 className="post-title">
+              <Link to={`/posts/${post.id}`}>{post.title}</Link>
+            </h2>
+            <div className="chessboard-container">
+              <Chessboard position={post.fen} />
+            </div>
+            <div className="post-details">
+              <div className="upvotes">
+                <span className="upvotes-count">{post.upvotes}</span>
+                <button onClick={() => handleUpvote(post.id)} className="upvote-button">Upvote</button>
+              </div>
+              <div className="top-comment">{fetchTopComment(post.id).text}</div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
