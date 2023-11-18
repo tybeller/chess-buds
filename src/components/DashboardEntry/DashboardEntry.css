@@ -8,7 +8,6 @@
     background-color: #1a1a1a;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
     overflow: hidden;
     margin-bottom: 20px;
     position: relative;
@@ -16,7 +15,7 @@
     padding: 30px
 }
 .post-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.005);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .post-card .post-card-header {
@@ -37,7 +36,7 @@ link {
     text-decoration: none !important
 }
 
-.post-card .post-card-header .post-title:hover {
+.post-card a:hover {
     color: lightblue;
     cursor: pointer;
 }
@@ -48,4 +47,9 @@ link {
     justify-content: center;
     align-items: center;
     gap: 0px;
+}
+
+.post-card a {
+    text-decoration: none !important;
+    color: #fff;
 }
