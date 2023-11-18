@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 function Home() {
     return (
         <div>
-            <h1>Welcome to the Chess Website!</h1>
-            <p>Here you can find information about chess, play online, and connect with other chess enthusiasts.</p>
+            <h1>Welcome to Chess Buds!</h1>
+            <p>Play Chess with your friends and share your games</p>
             <Link to="/play">
                 <button>Play Now</button>
             </Link>

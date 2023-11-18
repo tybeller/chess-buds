@@ -8,7 +8,7 @@ import './Dashboard.css';
 function Dashboard() {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortOption, setSortOption] = useState('upvotes'); // add state variable for sort option
+  const [sortOption, setSortOption] = useState(''); // add state variable for sort option
 
   useEffect(() => {
     async function fetchPosts() {

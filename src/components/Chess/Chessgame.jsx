@@ -7,6 +7,7 @@ import captureSound from '/src/assets/capture.mp3';
 import checkSound from '/src/assets/move-check.mp3';
 import invalidSound from '/src/assets/wrong.wav';
 import { api } from '../../api';
+import './Chessgame.css';
 
 export default function Chessgame() {
   const [chess] = useState(new Chess());
@@ -124,13 +125,13 @@ export default function Chessgame() {
       />
       {gameOver && (
         <>
-          <div>Game Over</div>
+          <h2>Game Over</h2>
           <button onClick={handleExport}>Post Game</button>
         </>
       )}
       {exportData && (
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form">
             <label>
               Title:
               <input
@@ -139,6 +140,7 @@ export default function Chessgame() {
                 onChange={e => setTitle(e.target.value)}
               />
             </label>
+            <br />
             <label>
               White Player Name:
               <input
@@ -179,8 +181,12 @@ export default function Chessgame() {
           </form>
         </div>
       )}
-      <button onClick={handleUndo}>Take back T_T</button>
-      <button onClick={() => setGameOver(true)}>Resign</button>
+      {!gameOver && (
+        <div>
+          <button onClick={handleUndo}>Take back T_T</button>
+          <button onClick={() => setGameOver(true)}>Resign</button>
+        </div>
+      )}
     </div>
   );
 }

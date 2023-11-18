@@ -22,8 +22,8 @@ const DashboardEntry = ({ post, handleUpvote }) => {
                 <Link to={`/posts/${post.id}`}>{post.title}</Link>
               </h2>
               <div className="players">
-                <p className="post-players">White: {post.white_name} ({post.white_elo || '?'})</p>
-                <p className="post-players">Black: {post.black_name} ({post.black_elo || '?'})</p>
+                <p className="post-players">White: {post.white_name || "Anonymous"} ({post.white_elo || '?'})</p>
+                <p className="post-players">Black: {post.black_name || "Anonymous"} ({post.black_elo || '?'})</p>
               </div>
             </div>
             <div className="chessboard-container">

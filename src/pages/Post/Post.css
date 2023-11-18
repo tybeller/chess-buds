@@ -1,0 +1,12 @@
+.comment {
+    display: flex;
+    flex-direction: row;
+}
+
+.post-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    overflow: wrap;
+}
