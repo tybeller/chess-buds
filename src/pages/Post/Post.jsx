@@ -143,15 +143,25 @@ const Post = () => {
                     <h2>Edit Post</h2>
                     <form>
                         <label>Title:</label>
+                        <br />
                         <input type="text" name="title" value={editedTitle} onChange={handleInputChange} />
+                        <br />
                         <label>White Name:</label>
+                        <br />
                         <input type="text" name="white_name" value={editedWhiteName} onChange={handleInputChange} />
+                        <br />
                         <label>White Elo:</label>
+                        <br />
                         <input type="number" name="white_elo" value={editedWhiteElo} onChange={handleInputChange} />
+                        <br />
                         <label>Black Name:</label>
+                        <br />
                         <input type="text" name="black_name" value={editedBlackName} onChange={handleInputChange} />
+                        <br />
                         <label>Black Elo:</label>
+                        <br />
                         <input type="number" name="black_elo" value={editedBlackElo} onChange={handleInputChange} />
+                        <br />
                         <button type="submit" onClick={handleEditSubmit}>Save</button>
                         <button type="button" onClick={handleCancelEdit}>Cancel</button>
                     </form>
@@ -174,8 +184,8 @@ const Post = () => {
                     </span>
                 ))}
                 <div>
-                    <input type="text" value={newCommentAuthor} onChange={handleCommentAuthorChange} placeholder="Your Name" /> {/* Add input field for the new comment author */}
-                    <input type="text" value={newComment} onChange={handleCommentChange} placeholder="Your Comment" /> {/* Modify the input field for the new comment */}
+                    <input type="text" className="com-name" value={newCommentAuthor} onChange={handleCommentAuthorChange} placeholder="Name" /> {/* Add input field for the new comment author */}
+                    <textarea type="text" className="com-body" value={newComment} onChange={handleCommentChange} placeholder="Comment" /> {/* Modify the input field for the new comment */}
                     <button onClick={handleAddComment}>Add Comment</button>
                 </div>
             </div>

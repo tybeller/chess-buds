@@ -27,10 +27,19 @@
 }
 
 .post-card .post-card-header .post-title {
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #fff;
     margin: 0;
+    text-decoration: none !important;
+}
+link {
+    text-decoration: none !important
+}
+
+.post-card .post-card-header .post-title:hover {
+    color: lightblue;
+    cursor: pointer;
 }
 
 .board {

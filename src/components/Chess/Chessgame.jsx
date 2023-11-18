@@ -132,46 +132,47 @@ export default function Chessgame() {
       {exportData && (
         <div>
           <form onSubmit={handleSubmit} className="form">
+            <br/>
             <label>
-              Title:
               <input
                 type="text"
+                placeholder="Title"
                 value={title}
                 onChange={e => setTitle(e.target.value)}
               />
             </label>
             <br />
             <label>
-              White Player Name:
               <input
                 type="text"
+                placeholder='White Player Name'
                 value={whitePlayerName}
                 onChange={e => setWhitePlayerName(e.target.value)}
               />
             </label>
             <br />
             <label>
-              White Player Elo:
               <input
                 type="text"
+                placeholder='White Player Elo'
                 value={whitePlayerElo}
                 onChange={e => setWhitePlayerElo(e.target.value)}
               />
             </label>
             <br />
             <label>
-              Black Player Name:
               <input
                 type="text"
+                placeholder='Black Player Name'
                 value={blackPlayerName}
                 onChange={e => setBlackPlayerName(e.target.value)}
               />
             </label>
             <br />
             <label>
-              Black Player Elo:
               <input
                 type="text"
+                placeholder='Black Player Elo'
                 value={blackPlayerElo}
                 onChange={e => setBlackPlayerElo(e.target.value)}
               />
